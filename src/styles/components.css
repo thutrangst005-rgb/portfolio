@@ -953,8 +953,8 @@ body {
 /* Big Metrics Grid for TEC GO */
 .metrics-quad-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(4, 1fr); /* Cố định 4 cột dàn đều */
+  gap: 1.5rem;                           /* Khoảng cách an toàn giữa các cột */
   margin-top: 2.5rem;
   padding-top: 2.5rem;
   border-top: 1px solid var(--border-subtle);
@@ -962,8 +962,25 @@ body {
 
 .metric-item {
   position: relative;
+  min-width: 0;                          /* Ngăn nội dung con làm tràn cột */
 }
 
+/* Thêm định dạng cho con số để không bị tràn chữ */
+.metric-item .stat-number, 
+.metric-item [class*="number"] {
+  font-size: clamp(1.8rem, 3.5vw, 3.2rem); /* Tự động thu nhỏ chữ trên màn hình nhỏ */
+  white-space: nowrap;                     /* Giữ số và dấu + trên cùng 1 dòng */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Tối ưu cho màn hình điện thoại / máy tính bảng */
+@media (max-width: 768px) {
+  .metrics-quad-grid {
+    grid-template-columns: repeat(2, 1fr); /* Trên di động chia thành 2 hàng x 2 cột */
+    gap: 2rem 1rem;
+  }
+}
 /* --------------------------------------------------------------------------
    6. Section 03 — The Quests (Case Studies Destinations)
    -------------------------------------------------------------------------- */
