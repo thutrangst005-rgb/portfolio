@@ -953,8 +953,8 @@ body {
 /* Big Metrics Grid for TEC GO */
 .metrics-quad-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Cố định 4 cột dàn đều */
-  gap: 1.5rem;                           /* Khoảng cách an toàn giữa các cột */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
   margin-top: 2.5rem;
   padding-top: 2.5rem;
   border-top: 1px solid var(--border-subtle);
@@ -962,23 +962,39 @@ body {
 
 .metric-item {
   position: relative;
-  min-width: 0;                          /* Ngăn nội dung con làm tràn cột */
+  min-width: 0;
 }
 
-/* Thêm định dạng cho con số để không bị tràn chữ */
-.metric-item .stat-number, 
-.metric-item [class*="number"] {
-  font-size: clamp(1.8rem, 3.5vw, 3.2rem); /* Tự động thu nhỏ chữ trên màn hình nhỏ */
-  white-space: nowrap;                     /* Giữ số và dấu + trên cùng 1 dòng */
-  overflow: hidden;
-  text-overflow: ellipsis;
+/* Định dạng riêng cho con số: thu nhỏ font một chút để không trúng lề */
+.metric-item [class*="number"],
+.metric-item .stat-number,
+.metric-item h3,
+.metric-item h4 {
+  font-size: clamp(1.6rem, 2.8vw, 2.5rem) !important;
+  line-height: 1.1;
+  white-space: nowrap;
 }
 
-/* Tối ưu cho màn hình điện thoại / máy tính bảng */
+/* Định dạng riêng cho nhãn chữ bên dưới: cho phép ngắt dòng và font nhỏ lại */
+.metric-item [class*="label"],
+.metric-item .stat-label,
+.metric-item p,
+.metric-item span {
+  font-size: 0.68rem !important;
+  letter-spacing: 0.05em !important;
+  white-space: normal !important;      /* Bắt buộc xuống dòng tự nhiên */
+  overflow: visible !important;        /* Không cắt thành dấu 3 chấm */
+  text-overflow: clip !important;
+  word-break: break-word;
+  margin-top: 0.4rem;
+  display: block;
+}
+
+/* Responsive cho di động */
 @media (max-width: 768px) {
   .metrics-quad-grid {
-    grid-template-columns: repeat(2, 1fr); /* Trên di động chia thành 2 hàng x 2 cột */
-    gap: 2rem 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem 1rem;
   }
 }
 /* --------------------------------------------------------------------------
