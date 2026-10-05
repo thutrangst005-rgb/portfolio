@@ -1,0 +1,79 @@
+/* ==========================================================================
+   THE ODYSSEY - DESIGN SYSTEM VARIABLES & TOKENS
+   FINANCE × BUSINESS × TECHNOLOGY // PHAN THỊ THU TRANG
+   ========================================================================== */
+
+:root {
+  /* -------------------------------------------------------------------------
+     Core Color Palette
+     ------------------------------------------------------------------------- */
+  --bg-primary: #07131C;       /* Deep midnight navy */
+  --bg-secondary: #0E2430;     /* Deep ocean blue */
+  --bg-tertiary: #132D3B;      /* Deeper maritime tint */
+  --bg-card: rgba(14, 36, 48, 0.65);
+  --bg-card-hover: rgba(19, 45, 59, 0.85);
+  --bg-overlay: rgba(7, 19, 28, 0.94);
+  
+  --text-primary: #F2EBDD;     /* Warm ivory */
+  --text-secondary: #D4CBBC;   /* Soft parchment */
+  --text-muted: #8E9FA6;       /* Subdued slate */
+  
+  --accent-gold: #B89B5E;      /* Muted antique gold */
+  --accent-gold-light: #D4BA7D;/* Warm shimmering gold */
+  --accent-gold-dark: #8C723E; /* Aged bronze */
+  --accent-slate: #6F8790;     /* Desaturated blue-grey */
+  --accent-slate-light: #9BB0B8;
+  
+  --border-subtle: rgba(242, 235, 221, 0.09);
+  --border-medium: rgba(111, 135, 144, 0.22);
+  --border-gold: rgba(184, 155, 94, 0.38);
+  --border-gold-bright: rgba(212, 186, 125, 0.7);
+
+  /* Glows & Accents */
+  --glow-gold: 0 0 35px rgba(184, 155, 94, 0.25);
+  --glow-gold-sm: 0 0 15px rgba(184, 155, 94, 0.3);
+  --glow-ocean: 0 0 40px rgba(14, 36, 48, 0.7);
+
+  /* -------------------------------------------------------------------------
+     Typography System
+     ------------------------------------------------------------------------- */
+  --font-serif: 'Montserrat', sans-serif;
+  --font-sans: 'Montserrat', sans-serif;
+  --font-mono: 'Montserrat', sans-serif;
+
+  /* Font Sizes */
+  --text-hero: clamp(2.75rem, 8vw, 7.5rem);
+  --text-display: clamp(2.25rem, 5.5vw, 4.5rem);
+  --text-title: clamp(1.75rem, 3.5vw, 3rem);
+  --text-heading: clamp(1.25rem, 2.2vw, 1.85rem);
+  --text-subheading: 1.125rem;
+  --text-body: 1rem;
+  --text-body-sm: 0.875rem;
+  --text-meta: 0.75rem;
+
+  /* -------------------------------------------------------------------------
+     Spatial System
+     ------------------------------------------------------------------------- */
+  --container-max: 1320px;
+  --section-padding-y: clamp(5rem, 12vh, 10rem);
+  --section-padding-x: clamp(1.5rem, 5vw, 4rem);
+
+  /* -------------------------------------------------------------------------
+     Animation & Easing
+     ------------------------------------------------------------------------- */
+  --ease-editorial: cubic-bezier(0.25, 1, 0.3, 1);
+  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.25s var(--ease-editorial);
+  --transition-smooth: 0.5s var(--ease-editorial);
+  --transition-long: 0.9s var(--ease-cinematic);
+
+  /* -------------------------------------------------------------------------
+     Z-Index Layers
+     ------------------------------------------------------------------------- */
+  --z-canvas: -1;
+  --z-base: 1;
+  --z-sticky-nav: 50;
+  --z-modal: 100;
+  --z-intro: 200;
+  --z-toast: 250;
+}

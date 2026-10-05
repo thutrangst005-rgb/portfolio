@@ -1,0 +1,31 @@
+{
+  "name": "trang-the-odyssey-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "The Odyssey - A Cinematic Journey through Finance, Business & Technology for Phan Thị Thu Trang",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "python -m http.server 3000"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.2"
+  },
+  "keywords": [
+    "portfolio",
+    "cinematic",
+    "editorial",
+    "finance",
+    "fintech",
+    "the-odyssey"
+  ],
+  "author": "Phan Thị Thu Trang",
+  "license": "MIT"
+}

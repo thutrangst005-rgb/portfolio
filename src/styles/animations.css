@@ -1,0 +1,176 @@
+/* ==========================================================================
+   THE ODYSSEY - CINEMATIC ANIMATIONS & TRANSITIONS
+   ========================================================================== */
+
+/* Film Grain Overlay */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Route Dash Animation */
+@keyframes routePulse {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-route {
+  stroke-dasharray: 8 6;
+  animation: routeDash 30s linear infinite;
+}
+
+@keyframes routeDash {
+  to {
+    stroke-dashoffset: -400;
+  }
+}
+
+/* Pulsing Waypoint Beacon */
+@keyframes beaconPulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(184, 155, 94, 0.6);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 16px rgba(184, 155, 94, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(184, 155, 94, 0);
+  }
+}
+
+.beacon-pulse {
+  animation: beaconPulse 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Gentle Horizon Undulation */
+@keyframes horizonBreathe {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
+}
+
+.horizon-glow {
+  animation: horizonBreathe 8s ease-in-out infinite;
+}
+
+/* Slow Compass Rotation */
+@keyframes slowCompassSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-compass-slow {
+  animation: slowCompassSpin 90s linear infinite;
+}
+
+.spin-compass-reverse {
+  animation: slowCompassSpin 60s linear infinite reverse;
+}
+
+/* Editorial Reveal Animations */
+.reveal-fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s var(--ease-editorial), transform 0.8s var(--ease-editorial);
+}
+
+.reveal-fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Magnetic Hover Lift */
+.magnetic-card {
+  transition: transform 0.4s var(--ease-editorial), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.magnetic-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-gold);
+  box-shadow: 0 16px 36px rgba(7, 19, 28, 0.8), 0 0 25px rgba(184, 155, 94, 0.12);
+}
+
+/* Shimmer Button Effect */
+.btn-cinematic {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.1rem 2.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  background: rgba(14, 36, 48, 0.8);
+  border: 1px solid var(--border-gold);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s var(--ease-editorial);
+  text-decoration: none;
+}
+
+.btn-cinematic::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(242, 235, 221, 0.15) 50%,
+    transparent 100%
+  );
+  transition: transform 0.7s var(--ease-cinematic);
+}
+
+.btn-cinematic:hover::before {
+  transform: translateX(200%);
+}
+
+.btn-cinematic:hover {
+  background: rgba(184, 155, 94, 0.18);
+  border-color: var(--accent-gold-light);
+  box-shadow: 0 0 30px rgba(184, 155, 94, 0.28);
+  color: #FFFFFF;
+}
+
+.btn-cinematic-secondary {
+  border-color: var(--border-medium);
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.btn-cinematic-secondary:hover {
+  border-color: var(--accent-slate-light);
+  background: rgba(111, 135, 144, 0.15);
+  color: var(--text-primary);
+  box-shadow: 0 0 20px rgba(111, 135, 144, 0.2);
+}

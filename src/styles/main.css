@@ -1,0 +1,55 @@
+/* ==========================================================================
+   THE ODYSSEY - MAIN STYLESHEET AGGREGATOR
+   ========================================================================== */
+
+@import './variables.css';
+@import './typography.css';
+@import './animations.css';
+@import './components.css';
+
+/* Utility Classes */
+.text-gold {
+  color: var(--accent-gold);
+}
+
+.text-gold-light {
+  color: var(--accent-gold-light);
+}
+
+.text-slate {
+  color: var(--accent-slate);
+}
+
+.text-ivory {
+  color: var(--text-primary);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.border-gold {
+  border-color: var(--border-gold);
+}
+
+.border-subtle {
+  border-color: var(--border-subtle);
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

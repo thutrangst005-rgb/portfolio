@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHAN THỊ THU TRANG // THE ODYSSEY — FINANCE × BUSINESS × TECHNOLOGY</title>
+  <meta name="description" content="A cinematic editorial portfolio journey through Finance, Business, and Technology by Phan Thị Thu Trang. Foreign Trade University.">
+
+  <!-- Favicon Nautical Compass -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' stroke='%23B89B5E' stroke-width='3' fill='%2307131C'/><path d='M50 15 L58 45 L85 50 L58 55 L50 85 L42 55 L15 50 L42 45 Z' fill='%23B89B5E'/><circle cx='50' cy='50' r='5' fill='%23F2EBDD'/></svg>">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="./src/styles/main.css">
+</head>
+<body>
+
+  <!-- Film Grain Overlay -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- Global Celestial Starfield Canvas -->
+  <canvas id="global-starfield-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: var(--z-canvas);"></canvas>
+
+  <!-- Visually Hidden YouTube Audio Player Container -->
+  <div class="yt-hidden-player-container" aria-hidden="true">
+    <div id="yt-intro-player"></div>
+  </div>
+
+  <!-- =========================================================================
+       CINEMATIC INTRO EXPERIENCE (20-30s opening, skippable anytime)
+       ========================================================================= -->
+  <aside id="cinematic-intro-overlay" class="cinematic-intro" role="dialog" aria-modal="true" aria-label="Expedition Prologue">
+    <canvas id="intro-ocean-canvas" class="intro-canvas"></canvas>
+
+    <div class="intro-content-container">
+      <!-- Scene 1: Black screen + Prologue -->
+      <div id="intro-scene-1" class="intro-scene active">
+        <div class="intro-small-title">THE ODYSSEY</div>
+        <h1 class="intro-big-text">
+          EVERY JOURNEY<br>
+          BEGINS WITH<br>
+          A DEPARTURE.
+        </h1>
+        <div style="margin-top: 2.5rem;">
+          <button id="intro-begin-btn" class="btn-cinematic" aria-label="Begin The Odyssey journey with sound">
+            BEGIN THE JOURNEY →
+          </button>
+        </div>
+      </div>
+
+      <!-- Scene 2: Ocean Horizon & Route Appears -->
+      <div id="intro-scene-2" class="intro-scene">
+        <div class="intro-small-title">NAVIGATION COORDINATES // 21°01'N 105°51'E</div>
+        <h2 class="intro-big-text" style="font-size: clamp(1.8rem, 4.5vw, 3.5rem);">
+          CHARTING UNCHARTED WATERS<br>
+          ACROSS CELESTIAL HORIZONS.
+        </h2>
+      </div>
+
+      <!-- Scene 3: Name Reveal -->
+      <div id="intro-scene-3" class="intro-scene">
+        <div class="intro-small-title">THE EXPLORER</div>
+        <h2 class="intro-name-text">
+          PHAN THỊ<br>
+          THU TRANG
+        </h2>
+      </div>
+
+      <!-- Scene 4: Triple Pillars -->
+      <div id="intro-scene-4" class="intro-scene">
+        <div class="intro-small-title">THE CONVERGENCE</div>
+        <div class="intro-pillars">
+          <span class="intro-pillar-item">FINANCE</span>
+          <span class="intro-pillar-sep">×</span>
+          <span class="intro-pillar-item">BUSINESS</span>
+          <span class="intro-pillar-sep">×</span>
+          <span class="intro-pillar-item">TECHNOLOGY</span>
+        </div>
+      </div>
+
+      <!-- Scene 5: Mission Statement -->
+      <div id="intro-scene-5" class="intro-scene">
+        <div class="intro-small-title">EXPEDITION MANIFESTO</div>
+        <h2 class="intro-big-text" style="font-size: clamp(1.8rem, 4vw, 3.2rem);">
+          A JOURNEY THROUGH<br>
+          MARKETS, IDEAS<br>
+          AND TECHNOLOGY.
+        </h2>
+      </div>
+
+      <!-- Scene Final: The Journey Begins -->
+      <div id="intro-scene-final" class="intro-scene">
+        <div class="intro-small-title">DESTINATIONS UNLOCKED</div>
+        <h2 class="intro-big-text" style="color: var(--accent-gold-light);">
+          THE JOURNEY BEGINS.
+        </h2>
+        <div style="margin-top: 2rem;">
+          <button id="intro-final-enter-btn" class="btn-cinematic" aria-label="Enter the main portfolio">
+            ENTER PORTFOLIO →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Intro Controls & Timeline Progress -->
+    <div class="intro-controls">
+      <div class="intro-progress-bar-container">
+        <div id="intro-progress-bar-fill" class="intro-progress-bar-fill"></div>
+      </div>
+      <div id="intro-progress-label" class="intro-progress-label">EXPEDITION INITIALIZATION // READY</div>
+      <div class="intro-btn-group">
+        <button id="intro-sound-toggle-btn" class="intro-sound-btn" aria-label="Toggle cinematic intro music" title="Sound: Music On (Click to turn off)">
+          <span id="intro-sound-icon">♪</span>
+          <span id="intro-sound-text">SOUND ON</span>
+        </button>
+        <button id="intro-skip-btn" class="intro-skip-btn" aria-label="Skip cinematic introduction">
+          SKIP INTRO →
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       STICKY EDITORIAL NAVIGATION
+       ========================================================================= -->
+  <header id="main-header" class="main-header">
+    <div id="nav-scroll-progress" class="nav-scroll-progress"></div>
+    <div class="nav-inner">
+      <a href="#hero" class="nav-brand" aria-label="The Odyssey Home">
+        <span class="brand-title">TRANG // THE ODYSSEY</span>
+        <span class="brand-coordinates">21°01'N 105°51'E</span>
+      </a>
+
+      <!-- Desktop Menu -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li><a href="#hero" class="nav-link active">00. HOME</a></li>
+          <li><a href="#origin" class="nav-link">01. THE ORIGIN</a></li>
+          <li><a href="#journey" class="nav-link">02. THE JOURNEY</a></li>
+          <li><a href="#quests" class="nav-link">03. THE QUESTS</a></li>
+          <li><a href="#archive" class="nav-link">04. THE ARCHIVE</a></li>
+          <li><a href="#tools" class="nav-link">05. THE TOOLS</a></li>
+          <li><a href="#horizon" class="nav-link">06. THE HORIZON</a></li>
+        </ul>
+      </nav>
+
+      <!-- Utility Tools -->
+      <div class="nav-tools-group">
+        <button type="button" class="sound-toggle-btn" data-sound-toggle aria-label="Toggle ambient atmospheric audio" title="Sound: Atmospheric Ambience">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
+        </button>
+
+        <button type="button" id="mobile-menu-trigger" class="mobile-menu-trigger" aria-label="Toggle Navigation Drawer">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-nav-drawer" class="mobile-nav-drawer" aria-label="Mobile Navigation Drawer">
+    <ul class="mobile-nav-links">
+      <li><a href="#hero" class="mobile-nav-link"><span>00</span> HOME</a></li>
+      <li><a href="#origin" class="mobile-nav-link"><span>01</span> THE ORIGIN</a></li>
+      <li><a href="#journey" class="mobile-nav-link"><span>02</span> THE JOURNEY</a></li>
+      <li><a href="#quests" class="mobile-nav-link"><span>03</span> THE QUESTS</a></li>
+      <li><a href="#archive" class="mobile-nav-link"><span>04</span> THE ARCHIVE</a></li>
+      <li><a href="#tools" class="mobile-nav-link"><span>05</span> THE TOOLS</a></li>
+      <li><a href="#horizon" class="mobile-nav-link"><span>06</span> THE HORIZON</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <!-- =======================================================================
+         SECTION 00 — HOME (HERO)
+         ======================================================================= -->
+    <section id="hero" class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-content reveal-fade-up visible">
+          <div class="hero-pre-badge">VOYAGE DOSSIER // EXPEDITION 2026</div>
+
+          <h1 class="hero-name">
+            PHAN THỊ<br>
+            THU TRANG
+          </h1>
+
+          <div class="hero-odyssey-subtitle">
+            THE ODYSSEY
+          </div>
+
+          <div class="hero-triad">
+            <span>FINANCE</span>
+            <span class="sep">×</span>
+            <span>BUSINESS</span>
+            <span class="sep">×</span>
+            <span>TECHNOLOGY</span>
+          </div>
+
+          <div class="hero-bio-dossier">
+            <p class="hero-bio-title">Final-year International Finance student</p>
+            <p class="hero-bio-inst">Foreign Trade University</p>
+          </div>
+
+          <div style="display: flex; gap: 1.25rem; flex-wrap: wrap;">
+            <a href="#origin" class="btn-cinematic">
+              EXPLORE MY JOURNEY ↓
+            </a>
+            <a href="#quests" class="btn-cinematic btn-cinematic-secondary">
+              VIEW QUESTS →
+            </a>
+          </div>
+        </div>
+
+        <!-- Editorial Portrait -->
+        <div class="hero-photo-frame reveal-fade-up visible">
+          <img src="assets/images/trang.jpg" alt="Phan Thị Thu Trang" class="hero-portrait" loading="eager">
+          <div class="hero-photo-overlay" aria-hidden="true"></div>
+        </div>
+
+      </div>
+
+      <!-- Ancient Navigation Astrolabe / Compass Motif -->
+      <div class="hero-compass-art spin-compass-slow" aria-hidden="true">
+        <svg viewBox="0 0 500 500" fill="none" stroke="#B89B5E" stroke-width="1.2">
+          <circle cx="250" cy="250" r="240" stroke-dasharray="4 6" opacity="0.4"/>
+          <circle cx="250" cy="250" r="210" stroke-width="1" opacity="0.6"/>
+          <circle cx="250" cy="250" r="160" stroke-dasharray="2 4" opacity="0.5"/>
+          <circle cx="250" cy="250" r="90" stroke-width="1.5" opacity="0.8"/>
+          <!-- Compass Needle -->
+          <line x1="250" y1="10" x2="250" y2="490" stroke="#B89B5E" stroke-width="1" opacity="0.5"/>
+          <line x1="10" y1="250" x2="490" y2="250" stroke="#B89B5E" stroke-width="1" opacity="0.5"/>
+          <polygon points="250,50 260,250 250,230 240,250" fill="#B89B5E" opacity="0.8"/>
+          <polygon points="250,450 260,250 250,270 240,250" fill="#6F8790" opacity="0.7"/>
+          <polygon points="50,250 250,260 230,250 250,240" fill="#6F8790" opacity="0.6"/>
+          <polygon points="450,250 250,260 270,250 250,240" fill="#6F8790" opacity="0.6"/>
+          <!-- Subtle Degrees Numbers -->
+          <circle cx="250" cy="250" r="12" fill="#07131C" stroke="#B89B5E" stroke-width="2"/>
+        </svg>
+      </div>
+    </section>
+
+
+    <!-- =======================================================================
+         SECTION 01 — THE ORIGIN
+         ======================================================================= -->
+    <section id="origin" class="section-wrapper">
+      <div class="container">
+        <div class="chapter-number">01 // THE ORIGIN</div>
+        <h2 class="section-headline">
+          EVERY JOURNEY<br>
+          HAS AN ORIGIN.
+        </h2>
+        <p class="section-subheadline">
+          ACADEMIC DOSSIER // QUANTITATIVE FOUNDATION
+        </p>
+
+        <div class="origin-grid">
+          <!-- Main Academic Card -->
+          <div class="academic-card magnetic-card reveal-fade-up">
+            <div class="academic-header-stamp">
+              <span class="archival-tag">FOUNDATIONAL EXPEDITION</span>
+              <span class="font-mono text-muted">2023 — PRESENT</span>
+            </div>
+
+            <h3 class="university-name">FOREIGN TRADE UNIVERSITY</h3>
+            <div class="major-name">International Finance</div>
+
+            <div class="gpa-monument">
+              <div class="gpa-number" data-counter-value="3.42">3.42</div>
+              <div class="gpa-scale">/ 4.00 GPA</div>
+            </div>
+
+            <div class="coursework-container">
+              <div class="coursework-title">RELEVANT COURSEWORK & CURRICULUM</div>
+              <div class="coursework-pill-grid">
+                <div class="coursework-pill">
+                  <span class="coursework-pill-dot"></span>
+                  <span>Fintech</span>
+                </div>
+                <div class="coursework-pill">
+                  <span class="coursework-pill-dot"></span>
+                  <span>Corporate Finance</span>
+                </div>
+                <div class="coursework-pill">
+                  <span class="coursework-pill-dot"></span>
+                  <span>Investment Analysis</span>
+                </div>
+                <div class="coursework-pill">
+                  <span class="coursework-pill-dot"></span>
+                  <span>Financial Markets</span>
+                </div>
+                <div class="coursework-pill">
+                  <span class="coursework-pill-dot"></span>
+                  <span>Financial Risk Management</span>
+                </div>
+                <div class="coursework-pill">
+                  <span class="coursework-pill-dot"></span>
+                  <span>Programming in Economics & Business</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Editorial Archival Sidebar -->
+          <div class="archival-sidebar reveal-fade-up">
+            <div class="archival-tag slate" style="margin-bottom: 1.5rem;">ACADEMIC DISPATCH</div>
+            <p class="archival-manifesto">
+              "The origin of any analytical journey lies in building an unshakeable mathematical compass. Rooted in rigorous economic theories, capital structures, and modern financial risk architecture."
+            </p>
+            <div style="border-top: 1px solid var(--border-subtle); padding-top: 1.5rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); line-height: 1.8;">
+              <div>INSTITUTION: Foreign Trade University (FTU)</div>
+              <div>LOCATION: Hanoi, Vietnam</div>
+              <div>SPECIALIZATION: Quantitative Valuation & Computational Finance</div>
+              <div style="color: var(--accent-gold); margin-top: 0.5rem;">STATUS: Final-Year Candidate</div>
+            </div>
+
+            <!-- Portrait — upper body editorial crop -->
+            <div class="origin-photo-frame">
+              <img src="assets/images/trang.jpg" alt="Phan Thị Thu Trang" class="origin-portrait" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =======================================================================
+         SECTION 02 — THE JOURNEY
+         ======================================================================= -->
+    <section id="journey" class="section-wrapper">
+      <div class="container">
+        <div class="chapter-number">02 // THE JOURNEY</div>
+        <h2 class="section-headline">
+          THE VOYAGE CHRONICLES.
+        </h2>
+        <p class="section-subheadline">
+          PROFESSIONAL TRAJECTORY & STRATEGIC LEADERSHIP
+        </p>
+
+        <div class="journey-timeline">
+          <!-- Animated Vertical Navigation Route SVG -->
+          <svg class="journey-route-svg" viewBox="0 0 10 1200" preserveAspectRatio="none">
+            <line x1="5" y1="0" x2="5" y2="1200" stroke="rgba(111, 135, 144, 0.2)" stroke-width="2" stroke-dasharray="4 4" />
+            <path id="journey-route-path" d="M 5 0 L 5 1200" fill="none" stroke="#B89B5E" stroke-width="2.5" />
+          </svg>
+
+          <!-- Milestone 1: FIREANT -->
+          <div class="journey-milestone reveal-fade-up">
+            <div class="journey-milestone-marker beacon-pulse" aria-hidden="true"></div>
+            <div class="milestone-content-card magnetic-card">
+              <div class="milestone-top-row">
+                <div>
+                  <div class="archival-tag" style="margin-bottom: 0.75rem;">FINANCIAL DERIVATIVES TRACK</div>
+                  <h3 class="milestone-company">FIREANT</h3>
+                  <div class="milestone-role">Derivatives Business Intern</div>
+                </div>
+                <div class="milestone-period">06/2026 — PRESENT</div>
+              </div>
+
+              <p class="milestone-description">
+                Customer support, commodity derivatives market analysis and marketing coordination.
+              </p>
+
+              <div class="milestone-highlight-tags">
+                <span class="archival-tag">MARKETS</span>
+                <span class="archival-tag">COMMODITIES</span>
+                <span class="archival-tag">CLIENTS</span>
+                <span class="archival-tag">ANALYSIS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Milestone 2: TEC GO -->
+          <div class="journey-milestone reveal-fade-up">
+            <div class="journey-milestone-marker beacon-pulse" aria-hidden="true"></div>
+            <div class="milestone-content-card magnetic-card">
+              <div class="milestone-top-row">
+                <div>
+                  <div class="archival-tag" style="margin-bottom: 0.75rem;">ECOSYSTEM & LEADERSHIP EXPEDITION</div>
+                  <h3 class="milestone-company">TEC GO</h3>
+                  <div class="milestone-role">TEC Go Manager</div>
+                </div>
+                <div class="milestone-period">08/2024 — 10/2025</div>
+              </div>
+
+              <!-- Huge Numerical Typography Grid -->
+              <div class="metrics-quad-grid">
+                <div class="metric-item">
+                  <span class="giant-number" data-counter-value="15">15</span>
+                  <span class="giant-number-label">PEOPLE MANAGED</span>
+                </div>
+
+                <div class="metric-item">
+                  <span class="giant-number" data-counter-value="300+">300+</span>
+                  <span class="giant-number-label">CORPORATE PARTNERS</span>
+                </div>
+
+                <div class="metric-item">
+                  <span class="giant-number" data-counter-value="100M+">100M+</span>
+                  <span class="giant-number-label">VND PROJECT BUDGETS</span>
+                </div>
+
+                <div class="metric-item">
+                  <span class="giant-number" data-counter-value="100+">100+</span>
+                  <span class="giant-number-label">PARTICIPANTS</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECTION 03 — THE QUESTS
+         ======================================================================= -->
+    <section id="quests" class="section-wrapper">
+      <div class="container">
+        <div class="chapter-number">03 // THE QUESTS</div>
+        <h2 class="section-headline">
+          MAJOR DESTINATIONS.
+        </h2>
+        <p class="section-subheadline">
+          PROJECTS & CASE STUDIES
+        </p>
+
+        <div class="quests-destination-deck">
+          <!-- Featured Quest: CARDY -->
+          <article class="quest-featured-card magnetic-card reveal-fade-up">
+            <div class="quest-info-pane">
+              <div>
+                <div class="quest-category-stamp">
+                  <span>★ FEATURED QUEST // FINTECH PLATFORM</span>
+                </div>
+                <h3 class="quest-name">CARDY</h3>
+                <div class="quest-tagline">THE CREDIT CARD ODYSSEY</div>
+                <p class="quest-desc">
+                  A credit-card management and recommendation web platform engineered to bring analytical transparency to modern personal credit selection.
+                </p>
+                <div class="quest-tag-row">
+                  <span class="quest-tag">FINTECH</span>
+                  <span class="quest-tag">PRODUCT</span>
+                  <span class="quest-tag">WEB</span>
+                </div>
+              </div>
+
+              <div>
+                <button type="button" class="btn-cinematic" data-open-quest="cardy">
+                  ENTER QUEST →
+                </button>
+              </div>
+            </div>
+
+            <!-- Visual Mockup Viewport -->
+            <div class="quest-visual-pane">
+              <div class="cardy-ui-mockup">
+                <div class="mockup-top-bar">
+                  <div class="mockup-dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="mockup-title">CARDY // PORTFOLIO OPTIMIZER</div>
+                  <div style="font-family: var(--font-mono); font-size: 0.65rem; color: #6F8790;">LAT 21°01'N</div>
+                </div>
+
+                <div class="mockup-body">
+                  <div class="cardy-card-graphic">
+                    <div class="cardy-card-chip"></div>
+                    <div class="cardy-card-num">•••• •••• •••• 8826</div>
+                    <div class="cardy-card-foot">
+                      <span>PHAN THI THU TRANG</span>
+                      <span style="color: var(--accent-gold-light);">PLATINUM REWARDS</span>
+                    </div>
+                  </div>
+
+                  <div class="cardy-metrics-preview">
+                    <div class="cardy-metric-box">
+                      <label>OPTIMAL REWARD</label>
+                      <span>15.0% CASHBACK</span>
+                    </div>
+                    <div class="cardy-metric-box">
+                      <label>ANNUAL VALUE</label>
+                      <span>7.2M VND</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Secondary Quests Grid -->
+          <div class="secondary-quests-grid">
+            <!-- Quest 2: INVESTOR SENTIMENT -->
+            <article class="quest-subcard magnetic-card reveal-fade-up">
+              <div>
+                <div class="quest-category-stamp">
+                  <span>EMPIRICAL RESEARCH QUEST</span>
+                </div>
+                <h3 class="quest-name" style="font-size: clamp(1.8rem, 2.8vw, 2.4rem);">INVESTOR SENTIMENT</h3>
+                <div class="quest-tagline">READING THE MIND OF THE MARKET</div>
+                <p class="quest-desc">
+                  Quantitative investigation measuring retail psychological swings and stock price crash risk in Vietnam equities.
+                </p>
+                <div class="quest-tag-row">
+                  <span class="quest-tag">RESEARCH</span>
+                  <span class="quest-tag">FINANCE</span>
+                  <span class="quest-tag">DATA</span>
+                </div>
+
+                <!-- Metrics Callout -->
+                <div style="margin: 2rem 0; padding: 1.25rem; background: rgba(7, 19, 28, 0.7); border: 1px solid var(--border-subtle); display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center;">
+                  <div>
+                    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">METHOD</div>
+                    <div style="font-family: var(--font-mono); font-size: 1.1rem; color: var(--accent-gold); font-weight: 700;">PCA</div>
+                  </div>
+                  <div>
+                    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">SAMPLE</div>
+                    <div style="font-family: var(--font-mono); font-size: 1.1rem; color: var(--accent-gold); font-weight: 700;">3,000+</div>
+                  </div>
+                  <div>
+                    <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">MARKET</div>
+                    <div style="font-family: var(--font-mono); font-size: 1.1rem; color: var(--accent-gold); font-weight: 700;">VN-INDEX</div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <button type="button" class="btn-cinematic btn-cinematic-secondary" data-open-quest="investor-sentiment">
+                  ENTER QUEST →
+                </button>
+              </div>
+            </article>
+
+            <!-- Quest 3: XPLORATORS -->
+            <article class="quest-subcard magnetic-card reveal-fade-up">
+              <div>
+                <div class="quest-category-stamp">
+                  <span>EXPEDITION & COMPETITION</span>
+                </div>
+                <h3 class="quest-name" style="font-size: clamp(1.8rem, 2.8vw, 2.4rem);">XPLORATORS</h3>
+                <div class="quest-tagline">THE FIRST EXPEDITION</div>
+                <p class="quest-desc">
+                  Fintech & Blockchain competition fostering pioneering financial engineering and multi-institutional mentorship.
+                </p>
+                <div class="quest-tag-row">
+                  <span class="quest-tag">FINTECH</span>
+                  <span class="quest-tag">LEADERSHIP</span>
+                  <span class="quest-tag">EVENT</span>
+                </div>
+
+                <div style="margin: 2rem 0; padding: 1.5rem; border-left: 2px solid var(--accent-gold); background: rgba(7, 19, 28, 0.5); font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7;">
+                  "A nationwide competitive proving ground connecting aspiring fintech builders, researchers, and leading financial institutions."
+                </div>
+              </div>
+
+              <div>
+                <button type="button" class="btn-cinematic btn-cinematic-secondary" data-open-quest="xplorators">
+                  ENTER QUEST →
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECTION 04 — THE ARCHIVE
+         ======================================================================= -->
+    <section id="archive" class="section-wrapper">
+      <div class="container">
+        <div class="chapter-number">04 // THE ARCHIVE</div>
+        <h2 class="section-headline">
+          WHAT DOES<br>
+          THE MARKET FEEL?
+        </h2>
+        <p class="section-subheadline">
+          PUBLISHED EMPIRICAL RESEARCH & BEHAVIORAL ASSET PRICING
+        </p>
+
+        <article class="archive-paper-card reveal-fade-up">
+          <div class="archive-watermark">ARCHIVAL DISPATCH // SPEC-2026-FTU</div>
+
+          <div class="archival-tag" style="margin-bottom: 1.5rem;">
+            RESEARCH PUBLICATION // 05/2026
+          </div>
+
+          <h3 class="archive-paper-title">
+            Investor Sentiment & Stock Price Crash Risk
+          </h3>
+
+          <div class="archive-paper-subtitle">
+            Empirical investigation into market fragility and sentiment dynamics
+          </div>
+
+          <div class="archive-vietnamese-quote">
+            “Xây dựng và đo lường chỉ số tâm lý nhà đầu tư trên thị trường chứng khoán Việt Nam: Nghiên cứu thực nghiệm áp dụng phương pháp PCA”
+          </div>
+
+          <!-- Archival Metadata Grid -->
+          <div class="archive-meta-grid">
+            <div class="archive-meta-item">
+              <label>ANALYTICAL FRAMEWORK</label>
+              <span>PCA METHOD</span>
+            </div>
+            <div class="archive-meta-item">
+              <label>DATASET VOLUME</label>
+              <span data-counter-value="3,000+">3,000+ OBSERVATIONS</span>
+            </div>
+            <div class="archive-meta-item">
+              <label>EMPIRICAL ARENA</label>
+              <span>VIETNAM STOCK MARKET</span>
+            </div>
+            <div class="archive-meta-item">
+              <label>DATE OF PUBLICATION</label>
+              <span>05/2026</span>
+            </div>
+          </div>
+
+          <div style="margin-top: 3rem; display: flex; gap: 1.5rem; flex-wrap: wrap;">
+            <button type="button" class="btn-cinematic" data-open-quest="investor-sentiment">
+              READ FULL RESEARCH DOSSIER →
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECTION 05 — THE TOOLS
+         ======================================================================= -->
+    <section id="tools" class="section-wrapper">
+      <div class="container">
+        <div class="chapter-number">05 // THE TOOLS</div>
+        <h2 class="section-headline">
+          THE TOOLS I CARRY.
+        </h2>
+        <p class="section-subheadline">
+          TECHNICAL INSTRUMENTS, QUANTITATIVE RIGOR & CREDENTIALS
+        </p>
+
+        <div class="tools-grid">
+          <!-- FINANCE CARD -->
+          <div class="tool-deck-card magnetic-card reveal-fade-up">
+            <div class="tool-deck-icon">FIN-01 // DOMAIN</div>
+            <h3 class="tool-deck-title">FINANCE</h3>
+            <ul class="tool-tag-list">
+              <li class="tool-tag-item"><span class="bullet">◆</span> Financial Analysis</li>
+              <li class="tool-tag-item"><span class="bullet">◆</span> Investment Analysis</li>
+              <li class="tool-tag-item"><span class="bullet">◆</span> Financial Risk Management</li>
+              <li class="tool-tag-item"><span class="bullet">◆</span> Fintech</li>
+            </ul>
+          </div>
+
+          <!-- DATA CARD -->
+          <div class="tool-deck-card magnetic-card reveal-fade-up">
+            <div class="tool-deck-icon">DAT-02 // COMPUTATION</div>
+            <h3 class="tool-deck-title">DATA</h3>
+            <ul class="tool-tag-list">
+              <li class="tool-tag-item"><span class="bullet">◆</span> Excel</li>
+              <li class="tool-tag-item"><span class="bullet">◆</span> Power Query</li>
+              <li class="tool-tag-item"><span class="bullet">◆</span> Python</li>
+              <li class="tool-tag-item"><span class="bullet">◆</span> Stata</li>
+            </ul>
+          </div>
+
+          <!-- LANGUAGE CARD -->
+          <div class="tool-deck-card magnetic-card reveal-fade-up">
+            <div class="tool-deck-icon">LNG-03 // GLOBAL</div>
+            <h3 class="tool-deck-title">LANGUAGE</h3>
+            <ul class="tool-tag-list">
+              <li class="tool-tag-item"><span class="bullet">◆</span> IELTS 7.5</li>
+              <li class="tool-tag-item"><span class="bullet">◆</span> HSK 4</li>
+            </ul>
+          </div>
+
+          <!-- CERTIFICATION CARD -->
+          <div class="tool-deck-card magnetic-card reveal-fade-up">
+            <div class="tool-deck-icon">CRT-04 // CREDENTIAL</div>
+            <h3 class="tool-deck-title">CERTIFICATION</h3>
+            <ul class="tool-tag-list">
+              <li class="tool-tag-item" style="border-color: var(--border-gold); background: rgba(184, 155, 94, 0.08); color: var(--accent-gold-light);">
+                <span class="bullet" style="color: var(--accent-gold-light);">★</span> CFA LEVEL 1 CANDIDATE
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECTION 06 — THE HORIZON
+         ======================================================================= -->
+    <section id="horizon" class="horizon-section">
+      <canvas id="horizon-canvas-bg" class="horizon-canvas"></canvas>
+
+      <div class="container horizon-content">
+        <div class="chapter-number" style="justify-content: center; margin-bottom: 2rem;">06 // THE HORIZON</div>
+
+        <h2 class="horizon-headline gold-shimmer">
+          THE JOURNEY<br>
+          IS NOT OVER.
+        </h2>
+
+        <div class="horizon-prose-lines">
+          There are still markets to understand.<br>
+          Problems to solve.<br>
+          Products to build.
+        </div>
+
+        <div class="horizon-next-label">
+          WHERE TO NEXT?
+        </div>
+
+        <div class="horizon-channels">
+          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="btn-cinematic">
+            GITHUB ↗
+          </a>
+          <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" class="btn-cinematic">
+            LINKEDIN ↗
+          </a>
+          <button type="button" class="btn-cinematic" data-copy-email="trangphan.finance@gmail.com">
+            EMAIL ✉
+          </button>
+        </div>
+
+        <footer class="horizon-footer-signoff">
+          <div>PHAN THỊ THU TRANG</div>
+          <div style="color: var(--accent-gold); margin-top: 0.35rem;">THE ODYSSEY // 2026</div>
+          <div style="font-size: 0.65rem; color: var(--text-muted); margin-top: 0.75rem;">
+            COORDINATES: LAT 21°01'44"N  LON 105°51'09"E // FOREIGN TRADE UNIVERSITY
+          </div>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       PROJECT CASE STUDY MODAL (FULL-SCREEN CHAPTER PRESENTATION)
+       ========================================================================= -->
+  <div id="case-study-modal" class="case-study-modal" role="dialog" aria-modal="true" aria-label="Case Study Dossier">
+    <button type="button" id="modal-close-btn" class="modal-close-btn" aria-label="Close Case Study">
+      ✕ CLOSE DOSSIER [ESC]
+    </button>
+    <div id="modal-dynamic-content">
+      <!-- Injected via CaseStudyModal.js -->
+    </div>
+  </div>
+
+  <!-- Main ES Module Script -->
+  <script type="module" src="./src/App.js"></script>
+</body>
+</html>
